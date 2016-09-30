@@ -12,6 +12,14 @@ EmailComposer.ComposeResultType = {
 
 // showEmailComposer : all args optional
 
+function sucessCordovaExec(e) {
+	console.log('EmailComposer: successful- ', e);
+}
+
+function failedCordovaExec(e) {
+	console.error('EmailComposer: failed- ', e);
+}
+
 EmailComposer.prototype.showEmailComposer = function(subject, body,
 		toRecipients, ccRecipients, bccRecipients, bIsHTML, attachments, attachmentsData) {
 	// console.log("****************************AVVIATO");
@@ -35,7 +43,7 @@ EmailComposer.prototype.showEmailComposer = function(subject, body,
 	    if (attachmentsData)
 	        args.attachmentsData = attachmentsData;
 	        
-		cordova.exec(null, null, "EmailComposer", "showEmailComposer", [ args ]);
+		cordova.exec(sucessCordovaExec, failedCordovaExec, "EmailComposer", "showEmailComposer", [ args ]);
 	} catch(e) {
 		console.error('EmailComposer: showEmailComposer failed with error- ', e);
 	}
