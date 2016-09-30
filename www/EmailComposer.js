@@ -14,26 +14,31 @@ EmailComposer.ComposeResultType = {
 
 EmailComposer.prototype.showEmailComposer = function(subject, body,
 		toRecipients, ccRecipients, bccRecipients, bIsHTML, attachments, attachmentsData) {
-	console.log("****************************AVVIATO");
-	var args = {};
-	if (toRecipients)
-		args.toRecipients = toRecipients;
-	if (ccRecipients)
-		args.ccRecipients = ccRecipients;
-	if (bccRecipients)
-		args.bccRecipients = bccRecipients;
-	if (subject)
-		args.subject = subject;
-	if (body)
-		args.body = body;
-	if (bIsHTML)
-		args.bIsHTML = bIsHTML;
-	if (attachments)
-		args.attachments = attachments;
-    if (attachmentsData)
-        args.attachmentsData = attachmentsData;
-        
-	cordova.exec(null, null, "EmailComposer", "showEmailComposer", [ args ]);
+	// console.log("****************************AVVIATO");
+	console.log('EmailComposer: in showEmailComposer');
+	try {
+		var args = {};
+		if (toRecipients)
+			args.toRecipients = toRecipients;
+		if (ccRecipients)
+			args.ccRecipients = ccRecipients;
+		if (bccRecipients)
+			args.bccRecipients = bccRecipients;
+		if (subject)
+			args.subject = subject;
+		if (body)
+			args.body = body;
+		if (bIsHTML)
+			args.bIsHTML = bIsHTML;
+		if (attachments)
+			args.attachments = attachments;
+	    if (attachmentsData)
+	        args.attachmentsData = attachmentsData;
+	        
+		cordova.exec(null, null, "EmailComposer", "showEmailComposer", [ args ]);
+	} catch(e) {
+		console.error('EmailComposer: showEmailComposer failed with error- ', e);
+	}
 }
 
 EmailComposer.prototype.showEmailComposerWithCallback = function(callback,
